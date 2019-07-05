@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 public class ChiSquareTest {
 
@@ -54,6 +56,7 @@ public class ChiSquareTest {
 	 */
 	private void initialize() {
 		frmChiSquareTest = new JFrame();
+		frmChiSquareTest.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\eclipse\\all_code\\test\\src\\ChiSquareTest\\images\\chi_icon.png"));
 		frmChiSquareTest.setTitle("Chi Square Test");
 		frmChiSquareTest.setBounds(100, 100, 450, 403);
 		frmChiSquareTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,6 +74,7 @@ public class ChiSquareTest {
 		frmChiSquareTest.getContentPane().add(lblNewLabel_1);
 		
 		obdata = new JTextField();
+		obdata.setHorizontalAlignment(SwingConstants.CENTER);
 		obdata.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		obdata.setBounds(223, 68, 152, 26);
 		frmChiSquareTest.getContentPane().add(obdata);
@@ -82,6 +86,7 @@ public class ChiSquareTest {
 		frmChiSquareTest.getContentPane().add(lblExpectedData);
 		
 		exdata = new JTextField();
+		exdata.setHorizontalAlignment(SwingConstants.CENTER);
 		exdata.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		exdata.setColumns(10);
 		exdata.setBounds(223, 105, 152, 26);
@@ -144,6 +149,7 @@ public class ChiSquareTest {
 		frmChiSquareTest.getContentPane().add(btnCalculate);
 		
 		observedChi = new JTextField();
+		observedChi.setHorizontalAlignment(SwingConstants.CENTER);
 		observedChi.setEditable(false);
 		observedChi.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		observedChi.setColumns(10);
@@ -152,10 +158,11 @@ public class ChiSquareTest {
 		
 		JLabel lblSignificatChiSquare = new JLabel("Significat Chi Square");
 		lblSignificatChiSquare.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblSignificatChiSquare.setBounds(51, 266, 160, 26);
+		lblSignificatChiSquare.setBounds(51, 272, 160, 26);
 		frmChiSquareTest.getContentPane().add(lblSignificatChiSquare);
 		
 		sgchi = new JTextField();
+		sgchi.setHorizontalAlignment(SwingConstants.CENTER);
 		sgchi.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		sgchi.setColumns(10);
 		sgchi.setBounds(223, 272, 152, 26);
