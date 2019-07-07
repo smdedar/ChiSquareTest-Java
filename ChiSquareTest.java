@@ -6,10 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,9 +22,9 @@ public class ChiSquareTest {
 	private JTextField observedChi;
 	private JTextField sgchi;
 	
-	ArrayList<Double> odata = new ArrayList<>();
-	ArrayList<Double> edata = new ArrayList<>();
-	
+	ArrayList<Double> odata = new ArrayList<>();  			//Define Arraylist For Observed Data
+	ArrayList<Double> edata = new ArrayList<>();			//Define Arraylist For Expected Data
+
 	Double obchi = 0.0;
 	/**
 	 * Launch the application.
@@ -56,7 +54,7 @@ public class ChiSquareTest {
 	 */
 	private void initialize() {
 		frmChiSquareTest = new JFrame();
-		frmChiSquareTest.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\eclipse\\all_code\\test\\src\\ChiSquareTest\\images\\chi_icon.png"));
+		frmChiSquareTest.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Downloads\\image.png"));
 		frmChiSquareTest.setTitle("Chi Square Test");
 		frmChiSquareTest.setBounds(100, 100, 450, 403);
 		frmChiSquareTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,14 +97,14 @@ public class ChiSquareTest {
 				if(obdata.getText().equals("") || exdata.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Please Enter Number","Error", JOptionPane.ERROR_MESSAGE);
 				}else {
-					Double observed = Double.parseDouble(obdata.getText().toString());
-					Double expected = Double.parseDouble(exdata.getText().toString());
+					Double observed = Double.parseDouble(obdata.getText().toString()); 		//Get Data From Observed Textfield 
+					Double expected = Double.parseDouble(exdata.getText().toString());		//Get Data From Expected Textfield 
 					
-					odata.add(observed);
-					edata.add(expected);
+					odata.add(observed);							//Push Data to Observed Arraylist
+					edata.add(expected);							//Push Data to Expected Arraylist
 					
-					obdata.setText("");
-					exdata.setText("");
+					obdata.setText("");								//Clear Observed Textfield
+					exdata.setText("");								//Clear Expected Textfield
 				}
 				
 			}
@@ -119,15 +117,16 @@ public class ChiSquareTest {
 		btnCalculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				double[] ob = new double[odata.size()];
-				double[] ex = new double[edata.size()];
-				double[] tp = new double[odata.size()];
+				double[] ob = new double[odata.size()];   //Store Observed Data
+				double[] ex = new double[edata.size()];	  //Store Expected Data
+				double[] tp = new double[odata.size()];	  //Temporary Store Data
 				
 				for (int i = 0; i < odata.size(); i++) {
-					ob[i] = odata.get(i);
-					ex[i] = edata.get(i);
+					ob[i] = odata.get(i);    //copy data observed arrylist to array
+					ex[i] = edata.get(i);	//copy data expected arrylist to array
 				}
 				
+				//Chi Square Formula			
 				for (int i = 0; i < odata.size(); i++) {
 					tp[i] = ob[i] - ex[i];
 					tp[i] = tp[i] * tp[i];
@@ -136,12 +135,12 @@ public class ChiSquareTest {
 					obchi = obchi + tp[i];
 				}
 				
-				String obchis= String.valueOf(obchi);  
+				String obchis= String.valueOf(obchi);  //Convert Double data to String Data
 				
-				observedChi.setText(obchis.substring(0, 12));
+				observedChi.setText(obchis.substring(0, 12)); //Set text to observed textfield
 				
-				AddButton.setEnabled(false);
-				btnCalculate.setEnabled(false);
+				AddButton.setEnabled(false);        //Disable Add Button
+				btnCalculate.setEnabled(false);		//Disable Calculate Button
 			}
 		});
 		btnCalculate.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -171,11 +170,14 @@ public class ChiSquareTest {
 		JButton btnCheck = new JButton("Check");
 		btnCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sgchi.getText().equals("")) {
+				
+				
+				if(sgchi.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Please Enter Number","Error", JOptionPane.ERROR_MESSAGE);
 				}else {
-					Double schi = Double.parseDouble(sgchi.getText().toString());
+					Double schi = Double.parseDouble(sgchi.getText().toString());  //Get Data From Significant Chi Textfield
 					
+					//Condition Check
 					if(obchi < schi){
 						JOptionPane.showMessageDialog(null, "Accepted", "", JOptionPane.PLAIN_MESSAGE);
 					}
@@ -183,6 +185,7 @@ public class ChiSquareTest {
 					else {
 						JOptionPane.showMessageDialog(null, "Rejected", "", JOptionPane.PLAIN_MESSAGE);
 					}
+					
 				}
 				
 			}
